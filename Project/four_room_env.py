@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import numpy as np
 """ Here is the implementation of the FourRooms
     Note that, the reward function is changed to be:
         - If the agent reaches the goal, it receives 0 and the episode terminates.
