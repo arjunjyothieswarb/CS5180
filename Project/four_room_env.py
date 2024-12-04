@@ -8,22 +8,34 @@ import numpy as np
 class FourRooms(object):
     def __init__(self):
         # We define the grid for the Four Rooms domain
+        # self.grid = np.array([[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        #                       [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]])
+        
         self.grid = np.array([[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                              [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0],
                               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                              [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+                              [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
                               [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                              [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]])
+                              [1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1],
+                              [1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+                              [1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]])
 
         # We define the observation space consisting of all empty cells
         # Note: We have to flip the coordinates from (row_idx, column_idx) -> (x, y),
         # where x = column_idx, y = 10 - row_idx
-        self.observation_space = np.argwhere(self.grid == 0.0).tolist()  # Fine all empty cells
+        self.observation_space = np.argwhere(self.grid >= 0.0).tolist()  # Fine all empty cells
         self.observation_space = self.arr_coords_to_four_room_coords(self.observation_space)
 
         # We define the action space
